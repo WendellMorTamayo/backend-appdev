@@ -1,527 +1,632 @@
 [
     {
-        "Month": "1964-01",
+        "Month": "1964-01-01",
         "Sales": 2815.0,
-        "Date": "1964-01-01"
+        "percent_increase": "NaN",
+        "cumulative_gross_sales": 2815.0
     },
     {
-        "Month": "1964-02",
+        "Month": "1964-02-01",
         "Sales": 2672.0,
-        "Date": "1964-02-01"
+        "percent_increase": "-5.08%",
+        "cumulative_gross_sales": 5487.0
     },
     {
-        "Month": "1964-03",
+        "Month": "1964-03-01",
         "Sales": 2755.0,
-        "Date": "1964-03-01"
+        "percent_increase": "3.11%",
+        "cumulative_gross_sales": 8242.0
     },
     {
-        "Month": "1964-04",
+        "Month": "1964-04-01",
         "Sales": 2721.0,
-        "Date": "1964-04-01"
+        "percent_increase": "-1.23%",
+        "cumulative_gross_sales": 10963.0
     },
     {
-        "Month": "1964-05",
+        "Month": "1964-05-01",
         "Sales": 2946.0,
-        "Date": "1964-05-01"
+        "percent_increase": "8.27%",
+        "cumulative_gross_sales": 13909.0
     },
     {
-        "Month": "1964-06",
+        "Month": "1964-06-01",
         "Sales": 3036.0,
-        "Date": "1964-06-01"
+        "percent_increase": "3.05%",
+        "cumulative_gross_sales": 16945.0
     },
     {
-        "Month": "1964-07",
+        "Month": "1964-07-01",
         "Sales": 2282.0,
-        "Date": "1964-07-01"
+        "percent_increase": "-24.84%",
+        "cumulative_gross_sales": 19227.0
     },
     {
-        "Month": "1964-08",
+        "Month": "1964-08-01",
         "Sales": 2212.0,
-        "Date": "1964-08-01"
+        "percent_increase": "-3.07%",
+        "cumulative_gross_sales": 21439.0
     },
     {
-        "Month": "1964-09",
+        "Month": "1964-09-01",
         "Sales": 2922.0,
-        "Date": "1964-09-01"
+        "percent_increase": "32.1%",
+        "cumulative_gross_sales": 24361.0
     },
     {
-        "Month": "1964-10",
+        "Month": "1964-10-01",
         "Sales": 4301.0,
-        "Date": "1964-10-01"
+        "percent_increase": "47.19%",
+        "cumulative_gross_sales": 28662.0
     },
     {
-        "Month": "1964-11",
+        "Month": "1964-11-01",
         "Sales": 5764.0,
-        "Date": "1964-11-01"
+        "percent_increase": "34.02%",
+        "cumulative_gross_sales": 34426.0
     },
     {
-        "Month": "1964-12",
+        "Month": "1964-12-01",
         "Sales": 7312.0,
-        "Date": "1964-12-01"
+        "percent_increase": "26.86%",
+        "cumulative_gross_sales": 41738.0
     },
     {
-        "Month": "1965-01",
+        "Month": "1965-01-01",
         "Sales": 2541.0,
-        "Date": "1965-01-01"
+        "percent_increase": "-65.25%",
+        "cumulative_gross_sales": 44279.0
     },
     {
-        "Month": "1965-02",
+        "Month": "1965-02-01",
         "Sales": 2475.0,
-        "Date": "1965-02-01"
+        "percent_increase": "-2.6%",
+        "cumulative_gross_sales": 46754.0
     },
     {
-        "Month": "1965-03",
+        "Month": "1965-03-01",
         "Sales": 3031.0,
-        "Date": "1965-03-01"
+        "percent_increase": "22.46%",
+        "cumulative_gross_sales": 49785.0
     },
     {
-        "Month": "1965-04",
+        "Month": "1965-04-01",
         "Sales": 3266.0,
-        "Date": "1965-04-01"
+        "percent_increase": "7.75%",
+        "cumulative_gross_sales": 53051.0
     },
     {
-        "Month": "1965-05",
+        "Month": "1965-05-01",
         "Sales": 3776.0,
-        "Date": "1965-05-01"
+        "percent_increase": "15.62%",
+        "cumulative_gross_sales": 56827.0
     },
     {
-        "Month": "1965-06",
+        "Month": "1965-06-01",
         "Sales": 3230.0,
-        "Date": "1965-06-01"
+        "percent_increase": "-14.46%",
+        "cumulative_gross_sales": 60057.0
     },
     {
-        "Month": "1965-07",
+        "Month": "1965-07-01",
         "Sales": 3028.0,
-        "Date": "1965-07-01"
+        "percent_increase": "-6.25%",
+        "cumulative_gross_sales": 63085.0
     },
     {
-        "Month": "1965-08",
+        "Month": "1965-08-01",
         "Sales": 1759.0,
-        "Date": "1965-08-01"
+        "percent_increase": "-41.91%",
+        "cumulative_gross_sales": 64844.0
     },
     {
-        "Month": "1965-09",
+        "Month": "1965-09-01",
         "Sales": 3595.0,
-        "Date": "1965-09-01"
+        "percent_increase": "104.38%",
+        "cumulative_gross_sales": 68439.0
     },
     {
-        "Month": "1965-10",
+        "Month": "1965-10-01",
         "Sales": 4474.0,
-        "Date": "1965-10-01"
+        "percent_increase": "24.45%",
+        "cumulative_gross_sales": 72913.0
     },
     {
-        "Month": "1965-11",
+        "Month": "1965-11-01",
         "Sales": 6838.0,
-        "Date": "1965-11-01"
+        "percent_increase": "52.84%",
+        "cumulative_gross_sales": 79751.0
     },
     {
-        "Month": "1965-12",
+        "Month": "1965-12-01",
         "Sales": 8357.0,
-        "Date": "1965-12-01"
+        "percent_increase": "22.21%",
+        "cumulative_gross_sales": 88108.0
     },
     {
-        "Month": "1966-01",
+        "Month": "1966-01-01",
         "Sales": 3113.0,
-        "Date": "1966-01-01"
+        "percent_increase": "-62.75%",
+        "cumulative_gross_sales": 91221.0
     },
     {
-        "Month": "1966-02",
+        "Month": "1966-02-01",
         "Sales": 3006.0,
-        "Date": "1966-02-01"
+        "percent_increase": "-3.44%",
+        "cumulative_gross_sales": 94227.0
     },
     {
-        "Month": "1966-03",
+        "Month": "1966-03-01",
         "Sales": 4047.0,
-        "Date": "1966-03-01"
+        "percent_increase": "34.63%",
+        "cumulative_gross_sales": 98274.0
     },
     {
-        "Month": "1966-04",
+        "Month": "1966-04-01",
         "Sales": 3523.0,
-        "Date": "1966-04-01"
+        "percent_increase": "-12.95%",
+        "cumulative_gross_sales": 101797.0
     },
     {
-        "Month": "1966-05",
+        "Month": "1966-05-01",
         "Sales": 3937.0,
-        "Date": "1966-05-01"
+        "percent_increase": "11.75%",
+        "cumulative_gross_sales": 105734.0
     },
     {
-        "Month": "1966-06",
+        "Month": "1966-06-01",
         "Sales": 3986.0,
-        "Date": "1966-06-01"
+        "percent_increase": "1.24%",
+        "cumulative_gross_sales": 109720.0
     },
     {
-        "Month": "1966-07",
+        "Month": "1966-07-01",
         "Sales": 3260.0,
-        "Date": "1966-07-01"
+        "percent_increase": "-18.21%",
+        "cumulative_gross_sales": 112980.0
     },
     {
-        "Month": "1966-08",
+        "Month": "1966-08-01",
         "Sales": 1573.0,
-        "Date": "1966-08-01"
+        "percent_increase": "-51.75%",
+        "cumulative_gross_sales": 114553.0
     },
     {
-        "Month": "1966-09",
+        "Month": "1966-09-01",
         "Sales": 3528.0,
-        "Date": "1966-09-01"
+        "percent_increase": "124.28%",
+        "cumulative_gross_sales": 118081.0
     },
     {
-        "Month": "1966-10",
+        "Month": "1966-10-01",
         "Sales": 5211.0,
-        "Date": "1966-10-01"
+        "percent_increase": "47.7%",
+        "cumulative_gross_sales": 123292.0
     },
     {
-        "Month": "1966-11",
+        "Month": "1966-11-01",
         "Sales": 7614.0,
-        "Date": "1966-11-01"
+        "percent_increase": "46.11%",
+        "cumulative_gross_sales": 130906.0
     },
     {
-        "Month": "1966-12",
+        "Month": "1966-12-01",
         "Sales": 9254.0,
-        "Date": "1966-12-01"
+        "percent_increase": "21.54%",
+        "cumulative_gross_sales": 140160.0
     },
     {
-        "Month": "1967-01",
+        "Month": "1967-01-01",
         "Sales": 5375.0,
-        "Date": "1967-01-01"
+        "percent_increase": "-41.92%",
+        "cumulative_gross_sales": 145535.0
     },
     {
-        "Month": "1967-02",
+        "Month": "1967-02-01",
         "Sales": 3088.0,
-        "Date": "1967-02-01"
+        "percent_increase": "-42.55%",
+        "cumulative_gross_sales": 148623.0
     },
     {
-        "Month": "1967-03",
+        "Month": "1967-03-01",
         "Sales": 3718.0,
-        "Date": "1967-03-01"
+        "percent_increase": "20.4%",
+        "cumulative_gross_sales": 152341.0
     },
     {
-        "Month": "1967-04",
+        "Month": "1967-04-01",
         "Sales": 4514.0,
-        "Date": "1967-04-01"
+        "percent_increase": "21.41%",
+        "cumulative_gross_sales": 156855.0
     },
     {
-        "Month": "1967-05",
+        "Month": "1967-05-01",
         "Sales": 4520.0,
-        "Date": "1967-05-01"
+        "percent_increase": "0.13%",
+        "cumulative_gross_sales": 161375.0
     },
     {
-        "Month": "1967-06",
+        "Month": "1967-06-01",
         "Sales": 4539.0,
-        "Date": "1967-06-01"
+        "percent_increase": "0.42%",
+        "cumulative_gross_sales": 165914.0
     },
     {
-        "Month": "1967-07",
+        "Month": "1967-07-01",
         "Sales": 3663.0,
-        "Date": "1967-07-01"
+        "percent_increase": "-19.3%",
+        "cumulative_gross_sales": 169577.0
     },
     {
-        "Month": "1967-08",
+        "Month": "1967-08-01",
         "Sales": 1643.0,
-        "Date": "1967-08-01"
+        "percent_increase": "-55.15%",
+        "cumulative_gross_sales": 171220.0
     },
     {
-        "Month": "1967-09",
+        "Month": "1967-09-01",
         "Sales": 4739.0,
-        "Date": "1967-09-01"
+        "percent_increase": "188.44%",
+        "cumulative_gross_sales": 175959.0
     },
     {
-        "Month": "1967-10",
+        "Month": "1967-10-01",
         "Sales": 5428.0,
-        "Date": "1967-10-01"
+        "percent_increase": "14.54%",
+        "cumulative_gross_sales": 181387.0
     },
     {
-        "Month": "1967-11",
+        "Month": "1967-11-01",
         "Sales": 8314.0,
-        "Date": "1967-11-01"
+        "percent_increase": "53.17%",
+        "cumulative_gross_sales": 189701.0
     },
     {
-        "Month": "1967-12",
+        "Month": "1967-12-01",
         "Sales": 10651.0,
-        "Date": "1967-12-01"
+        "percent_increase": "28.11%",
+        "cumulative_gross_sales": 200352.0
     },
     {
-        "Month": "1968-01",
+        "Month": "1968-01-01",
         "Sales": 3633.0,
-        "Date": "1968-01-01"
+        "percent_increase": "-65.89%",
+        "cumulative_gross_sales": 203985.0
     },
     {
-        "Month": "1968-02",
+        "Month": "1968-02-01",
         "Sales": 4292.0,
-        "Date": "1968-02-01"
+        "percent_increase": "18.14%",
+        "cumulative_gross_sales": 208277.0
     },
     {
-        "Month": "1968-03",
+        "Month": "1968-03-01",
         "Sales": 4154.0,
-        "Date": "1968-03-01"
+        "percent_increase": "-3.22%",
+        "cumulative_gross_sales": 212431.0
     },
     {
-        "Month": "1968-04",
+        "Month": "1968-04-01",
         "Sales": 4121.0,
-        "Date": "1968-04-01"
+        "percent_increase": "-0.79%",
+        "cumulative_gross_sales": 216552.0
     },
     {
-        "Month": "1968-05",
+        "Month": "1968-05-01",
         "Sales": 4647.0,
-        "Date": "1968-05-01"
+        "percent_increase": "12.76%",
+        "cumulative_gross_sales": 221199.0
     },
     {
-        "Month": "1968-06",
+        "Month": "1968-06-01",
         "Sales": 4753.0,
-        "Date": "1968-06-01"
+        "percent_increase": "2.28%",
+        "cumulative_gross_sales": 225952.0
     },
     {
-        "Month": "1968-07",
+        "Month": "1968-07-01",
         "Sales": 3965.0,
-        "Date": "1968-07-01"
+        "percent_increase": "-16.58%",
+        "cumulative_gross_sales": 229917.0
     },
     {
-        "Month": "1968-08",
+        "Month": "1968-08-01",
         "Sales": 1723.0,
-        "Date": "1968-08-01"
+        "percent_increase": "-56.54%",
+        "cumulative_gross_sales": 231640.0
     },
     {
-        "Month": "1968-09",
+        "Month": "1968-09-01",
         "Sales": 5048.0,
-        "Date": "1968-09-01"
+        "percent_increase": "192.98%",
+        "cumulative_gross_sales": 236688.0
     },
     {
-        "Month": "1968-10",
+        "Month": "1968-10-01",
         "Sales": 6922.0,
-        "Date": "1968-10-01"
+        "percent_increase": "37.12%",
+        "cumulative_gross_sales": 243610.0
     },
     {
-        "Month": "1968-11",
+        "Month": "1968-11-01",
         "Sales": 9858.0,
-        "Date": "1968-11-01"
+        "percent_increase": "42.42%",
+        "cumulative_gross_sales": 253468.0
     },
     {
-        "Month": "1968-12",
+        "Month": "1968-12-01",
         "Sales": 11331.0,
-        "Date": "1968-12-01"
+        "percent_increase": "14.94%",
+        "cumulative_gross_sales": 264799.0
     },
     {
-        "Month": "1969-01",
+        "Month": "1969-01-01",
         "Sales": 4016.0,
-        "Date": "1969-01-01"
+        "percent_increase": "-64.56%",
+        "cumulative_gross_sales": 268815.0
     },
     {
-        "Month": "1969-02",
+        "Month": "1969-02-01",
         "Sales": 3957.0,
-        "Date": "1969-02-01"
+        "percent_increase": "-1.47%",
+        "cumulative_gross_sales": 272772.0
     },
     {
-        "Month": "1969-03",
+        "Month": "1969-03-01",
         "Sales": 4510.0,
-        "Date": "1969-03-01"
+        "percent_increase": "13.98%",
+        "cumulative_gross_sales": 277282.0
     },
     {
-        "Month": "1969-04",
+        "Month": "1969-04-01",
         "Sales": 4276.0,
-        "Date": "1969-04-01"
+        "percent_increase": "-5.19%",
+        "cumulative_gross_sales": 281558.0
     },
     {
-        "Month": "1969-05",
+        "Month": "1969-05-01",
         "Sales": 4968.0,
-        "Date": "1969-05-01"
+        "percent_increase": "16.18%",
+        "cumulative_gross_sales": 286526.0
     },
     {
-        "Month": "1969-06",
+        "Month": "1969-06-01",
         "Sales": 4677.0,
-        "Date": "1969-06-01"
+        "percent_increase": "-5.86%",
+        "cumulative_gross_sales": 291203.0
     },
     {
-        "Month": "1969-07",
+        "Month": "1969-07-01",
         "Sales": 3523.0,
-        "Date": "1969-07-01"
+        "percent_increase": "-24.67%",
+        "cumulative_gross_sales": 294726.0
     },
     {
-        "Month": "1969-08",
+        "Month": "1969-08-01",
         "Sales": 1821.0,
-        "Date": "1969-08-01"
+        "percent_increase": "-48.31%",
+        "cumulative_gross_sales": 296547.0
     },
     {
-        "Month": "1969-09",
+        "Month": "1969-09-01",
         "Sales": 5222.0,
-        "Date": "1969-09-01"
+        "percent_increase": "186.77%",
+        "cumulative_gross_sales": 301769.0
     },
     {
-        "Month": "1969-10",
+        "Month": "1969-10-01",
         "Sales": 6872.0,
-        "Date": "1969-10-01"
+        "percent_increase": "31.6%",
+        "cumulative_gross_sales": 308641.0
     },
     {
-        "Month": "1969-11",
+        "Month": "1969-11-01",
         "Sales": 10803.0,
-        "Date": "1969-11-01"
+        "percent_increase": "57.2%",
+        "cumulative_gross_sales": 319444.0
     },
     {
-        "Month": "1969-12",
+        "Month": "1969-12-01",
         "Sales": 13916.0,
-        "Date": "1969-12-01"
+        "percent_increase": "28.82%",
+        "cumulative_gross_sales": 333360.0
     },
     {
-        "Month": "1970-01",
+        "Month": "1970-01-01",
         "Sales": 2639.0,
-        "Date": "1970-01-01"
+        "percent_increase": "-81.04%",
+        "cumulative_gross_sales": 335999.0
     },
     {
-        "Month": "1970-02",
+        "Month": "1970-02-01",
         "Sales": 2899.0,
-        "Date": "1970-02-01"
+        "percent_increase": "9.85%",
+        "cumulative_gross_sales": 338898.0
     },
     {
-        "Month": "1970-03",
+        "Month": "1970-03-01",
         "Sales": 3370.0,
-        "Date": "1970-03-01"
+        "percent_increase": "16.25%",
+        "cumulative_gross_sales": 342268.0
     },
     {
-        "Month": "1970-04",
+        "Month": "1970-04-01",
         "Sales": 3740.0,
-        "Date": "1970-04-01"
+        "percent_increase": "10.98%",
+        "cumulative_gross_sales": 346008.0
     },
     {
-        "Month": "1970-05",
+        "Month": "1970-05-01",
         "Sales": 2927.0,
-        "Date": "1970-05-01"
+        "percent_increase": "-21.74%",
+        "cumulative_gross_sales": 348935.0
     },
     {
-        "Month": "1970-06",
+        "Month": "1970-06-01",
         "Sales": 3986.0,
-        "Date": "1970-06-01"
+        "percent_increase": "36.18%",
+        "cumulative_gross_sales": 352921.0
     },
     {
-        "Month": "1970-07",
+        "Month": "1970-07-01",
         "Sales": 4217.0,
-        "Date": "1970-07-01"
+        "percent_increase": "5.8%",
+        "cumulative_gross_sales": 357138.0
     },
     {
-        "Month": "1970-08",
+        "Month": "1970-08-01",
         "Sales": 1738.0,
-        "Date": "1970-08-01"
+        "percent_increase": "-58.79%",
+        "cumulative_gross_sales": 358876.0
     },
     {
-        "Month": "1970-09",
+        "Month": "1970-09-01",
         "Sales": 5221.0,
-        "Date": "1970-09-01"
+        "percent_increase": "200.4%",
+        "cumulative_gross_sales": 364097.0
     },
     {
-        "Month": "1970-10",
+        "Month": "1970-10-01",
         "Sales": 6424.0,
-        "Date": "1970-10-01"
+        "percent_increase": "23.04%",
+        "cumulative_gross_sales": 370521.0
     },
     {
-        "Month": "1970-11",
+        "Month": "1970-11-01",
         "Sales": 9842.0,
-        "Date": "1970-11-01"
+        "percent_increase": "53.21%",
+        "cumulative_gross_sales": 380363.0
     },
     {
-        "Month": "1970-12",
+        "Month": "1970-12-01",
         "Sales": 13076.0,
-        "Date": "1970-12-01"
+        "percent_increase": "32.86%",
+        "cumulative_gross_sales": 393439.0
     },
     {
-        "Month": "1971-01",
+        "Month": "1971-01-01",
         "Sales": 3934.0,
-        "Date": "1971-01-01"
+        "percent_increase": "-69.91%",
+        "cumulative_gross_sales": 397373.0
     },
     {
-        "Month": "1971-02",
+        "Month": "1971-02-01",
         "Sales": 3162.0,
-        "Date": "1971-02-01"
+        "percent_increase": "-19.62%",
+        "cumulative_gross_sales": 400535.0
     },
     {
-        "Month": "1971-03",
+        "Month": "1971-03-01",
         "Sales": 4286.0,
-        "Date": "1971-03-01"
+        "percent_increase": "35.55%",
+        "cumulative_gross_sales": 404821.0
     },
     {
-        "Month": "1971-04",
+        "Month": "1971-04-01",
         "Sales": 4676.0,
-        "Date": "1971-04-01"
+        "percent_increase": "9.1%",
+        "cumulative_gross_sales": 409497.0
     },
     {
-        "Month": "1971-05",
+        "Month": "1971-05-01",
         "Sales": 5010.0,
-        "Date": "1971-05-01"
+        "percent_increase": "7.14%",
+        "cumulative_gross_sales": 414507.0
     },
     {
-        "Month": "1971-06",
+        "Month": "1971-06-01",
         "Sales": 4874.0,
-        "Date": "1971-06-01"
+        "percent_increase": "-2.71%",
+        "cumulative_gross_sales": 419381.0
     },
     {
-        "Month": "1971-07",
+        "Month": "1971-07-01",
         "Sales": 4633.0,
-        "Date": "1971-07-01"
+        "percent_increase": "-4.94%",
+        "cumulative_gross_sales": 424014.0
     },
     {
-        "Month": "1971-08",
+        "Month": "1971-08-01",
         "Sales": 1659.0,
-        "Date": "1971-08-01"
+        "percent_increase": "-64.19%",
+        "cumulative_gross_sales": 425673.0
     },
     {
-        "Month": "1971-09",
+        "Month": "1971-09-01",
         "Sales": 5951.0,
-        "Date": "1971-09-01"
+        "percent_increase": "258.71%",
+        "cumulative_gross_sales": 431624.0
     },
     {
-        "Month": "1971-10",
+        "Month": "1971-10-01",
         "Sales": 6981.0,
-        "Date": "1971-10-01"
+        "percent_increase": "17.31%",
+        "cumulative_gross_sales": 438605.0
     },
     {
-        "Month": "1971-11",
+        "Month": "1971-11-01",
         "Sales": 9851.0,
-        "Date": "1971-11-01"
+        "percent_increase": "41.11%",
+        "cumulative_gross_sales": 448456.0
     },
     {
-        "Month": "1971-12",
+        "Month": "1971-12-01",
         "Sales": 12670.0,
-        "Date": "1971-12-01"
+        "percent_increase": "28.62%",
+        "cumulative_gross_sales": 461126.0
     },
     {
-        "Month": "1972-01",
+        "Month": "1972-01-01",
         "Sales": 4348.0,
-        "Date": "1972-01-01"
+        "percent_increase": "-65.68%",
+        "cumulative_gross_sales": 465474.0
     },
     {
-        "Month": "1972-02",
+        "Month": "1972-02-01",
         "Sales": 3564.0,
-        "Date": "1972-02-01"
+        "percent_increase": "-18.03%",
+        "cumulative_gross_sales": 469038.0
     },
     {
-        "Month": "1972-03",
+        "Month": "1972-03-01",
         "Sales": 4577.0,
-        "Date": "1972-03-01"
+        "percent_increase": "28.42%",
+        "cumulative_gross_sales": 473615.0
     },
     {
-        "Month": "1972-04",
+        "Month": "1972-04-01",
         "Sales": 4788.0,
-        "Date": "1972-04-01"
+        "percent_increase": "4.61%",
+        "cumulative_gross_sales": 478403.0
     },
     {
-        "Month": "1972-05",
+        "Month": "1972-05-01",
         "Sales": 4618.0,
-        "Date": "1972-05-01"
+        "percent_increase": "-3.55%",
+        "cumulative_gross_sales": 483021.0
     },
     {
-        "Month": "1972-06",
+        "Month": "1972-06-01",
         "Sales": 5312.0,
-        "Date": "1972-06-01"
+        "percent_increase": "15.03%",
+        "cumulative_gross_sales": 488333.0
     },
     {
-        "Month": "1972-07",
+        "Month": "1972-07-01",
         "Sales": 4298.0,
-        "Date": "1972-07-01"
+        "percent_increase": "-19.09%",
+        "cumulative_gross_sales": 492631.0
     },
     {
-        "Month": "1972-08",
+        "Month": "1972-08-01",
         "Sales": 1413.0,
-        "Date": "1972-08-01"
+        "percent_increase": "-67.12%",
+        "cumulative_gross_sales": 494044.0
     },
     {
-        "Month": "1972-09",
+        "Month": "1972-09-01",
         "Sales": 5877.0,
-        "Date": "1972-09-01"
+        "percent_increase": "315.92%",
+        "cumulative_gross_sales": 499921.0
     }
 ]

@@ -4,68 +4,71 @@ import pickle
 import statsmodels.api as sm
 from sklearn.metrics import mean_absolute_error
 import json
+from flask import Flask, request, jsonify
+import os
+import uuid
 
 app = Flask(__name__)
 trained_models = {}
 
 
 def train_arima_model(data, order=(1, 1, 1), seasonal_order=(1, 1, 1, 12)):
+    """
+        Train an ARIMA model on the given time series data.
+
+        :param data: Time series data
+        :param order: ARIMA order parameter
+        :param seasonal_order: Seasonal ARIMA order parameter
+        :return: Trained ARIMA model
+        """
     model = sm.tsa.statespace.SARIMAX(data, order=order, seasonal_order=seasonal_order).fit()
     return model
+
+
+def save_csv_file(file):
+    """
+        Save a CSV file to the specified folder with a unique filename.
+
+        :param file: File to save
+        :param folder: Destination folder
+        :return: Unique filename
+        """
+    unique_filename = str(uuid.uuid4()) + '.csv'
+    file_path = os.path.join('uploads', unique_filename)
+    file.save(file_path)
+    return unique_filename
 
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
     try:
-        # Check if the post request has the file part
         if 'file' not in request.files:
             return jsonify({"error": "No file part"})
 
         file = request.files['file']
 
-        # Check if the file is not empty
         if file.filename == '':
             return jsonify({"error": "No selected file"})
 
         # Check if the file is a CSV file
         if file and file.filename.endswith('.csv'):
             # Save the file to a specific folder on the server
-            file.save('uploads/loaded_data1.csv')
-
+            file.save(os.path.join('uploads', 'loaded_data1.csv'))
             return jsonify({"success": "File uploaded successfully"})
+        elif file.filename.endswith(('.xlsx', '.xls')):
+            # Save Excel file
+            excel_filename = os.path.join('uploads', 'loaded_data1.xlsx')
+            file.save(excel_filename)
+
+            # Read Excel file and save as CSV
+            read_file = pd.read_excel(excel_filename)
+            csv_filename = save_csv_file(file)
+            csv_filepath = os.path.join('uploads', csv_filename)
+            read_file.to_csv(csv_filepath, index=False)
+
+            return jsonify({"success": "Excel file uploaded successfully", "filename": csv_filename})
         else:
             return jsonify({"error": "Invalid file format. Please upload a CSV file."})
-    except Exception as e:
-        return jsonify({"error": str(e)})
-
-
-@app.route('/monthly_sales', methods=['GET'])
-def get_monthly_sales():
-    try:
-        # Replace 'your_csv_file.csv' with the actual path to your CSV file
-        csv_file_path = 'uploads/loaded_data.csv'
-
-        # Read the CSV file into a pandas DataFrame
-        monthly_sales_data = pd.read_csv(csv_file_path)
-        monthly_sales_data['Date'] = pd.to_datetime(monthly_sales_data['Month'], errors='coerce')
-        monthly_sales_data = monthly_sales_data.dropna(subset=['Date'])
-        original_column_name = monthly_sales_data.columns[1]
-        monthly_sales_data = monthly_sales_data.rename(columns={original_column_name: 'Sales'})
-
-        # Convert Timestamps to strings
-        monthly_sales_data['Date'] = monthly_sales_data['Date'].dt.strftime('%Y-%m-%d')
-
-        # Convert the DataFrame to a list of dictionaries
-        data_list = monthly_sales_data.to_dict(orient='records')
-
-        # Specify the file path where you want to save the JSON file
-        file_path = "output.json"
-
-        # Write the data to the JSON file
-        with open(file_path, "w") as json_file:
-            json.dump(data_list, json_file, indent=4)
-
-        return jsonify(data_list)
     except Exception as e:
         return jsonify({"error": str(e)})
 
@@ -97,14 +100,36 @@ def calculate_gross_sales():
         # Calculate cumulative gross sales by adding sales from the last month to the current month
         gross_sales_by_month['cumulative_gross_sales'] = gross_sales_by_month['Sales'].cumsum()
 
+        gross_sales_by_month['Month'] = gross_sales_by_month['Month'].dt.strftime('%Y-%m-%d')
         # Convert the DataFrame to a list of dictionaries
         data_list = gross_sales_by_month.to_dict(orient='records')
+
+        file_path = "output.json"
+
+        # Write the data to the JSON file
+        with open(file_path, "w") as json_file:
+            json.dump(data_list, json_file, default=str, indent=4)
 
         # Convert the list to JSON and return the response
         return jsonify(data_list)
 
     except Exception as e:
         return {"error": str(e)}
+
+
+@app.route('/get_last_item', methods=['GET'])
+def get_last_item_from_json(file_path="output.json"):
+    try:
+        with open(file_path, "r") as json_file:
+            data_list = json.load(json_file)
+
+        # Get the last item from the list
+        last_item = data_list[-1]
+
+        return last_item
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
 
 
 @app.route('/')
@@ -166,23 +191,22 @@ def predict_endpoint():
         # Set the 'Month' column as the index
         actual_data.set_index('Month', inplace=True)
 
-        # Make predictions using the trained ARIMA model
-        predictions = trained_model.forecast(steps=len(actual_data) + 1)[-1]
+        # Find the last available month in the dataset
+        last_available_month = actual_data.index[-1]
 
-        # Extract the actual value for the next month
-        actual_value = actual_data.iloc[-1]['Sales']
+        # Forecast the next two months based on the last available month
+        forecast_steps = 3  # Adjust this value to forecast more steps into the future
+        future_index = pd.date_range(start=last_available_month + pd.DateOffset(months=1), periods=forecast_steps, freq='M')
+        predictions = trained_model.forecast(steps=forecast_steps, index=future_index)
 
-        # Calculate Mean Absolute Error (MAE)
-        mae = mean_absolute_error([actual_value], [predictions])
+        # Convert predictions to a list
+        predictions_list = predictions.tolist()
 
-        # Calculate Accuracy (assuming a threshold for acceptable difference)
-        threshold = 0.1  # Set your own threshold
-        absolute_difference = abs(predictions - actual_value)
-        accuracy = 100 - (absolute_difference / actual_value) * 100
-
-        # Return the prediction along with accuracy and MAE
-        return jsonify({"prediction": round(predictions, 2), "accuracy": round(accuracy, 2), "mae": round(mae, 2),
-                        "actual_value": actual_value})
+        # Return the prediction for the next two months
+        return jsonify({
+            "predictions": predictions_list,
+            "future_months": future_index.strftime('%Y-%m').tolist()
+        })
 
     except Exception as e:
         # Handle any exceptions, e.g., invalid CSV format or missing columns
