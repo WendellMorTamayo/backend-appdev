@@ -29,7 +29,7 @@ def upload_demand_file():
             return jsonify({"error": "No selected file"})
 
         # Generate a unique filename
-        unique_filename = str(uuid.uuid4()) + '.csv'
+        unique_filename = 'loaded_data_demand.csv'
         file_path = os.path.join('uploads', unique_filename)
 
         # Check if the file is a CSV or Excel file
@@ -46,6 +46,7 @@ def upload_demand_file():
 
             # Call the train_demand_model_endpoint to train the ARIMA model
             train_result = train_demand_model_endpoint()
+            predict_result = predict_demand_endpoint()
 
             return jsonify(
                 {"success": "CSV file uploaded successfully",
@@ -54,15 +55,23 @@ def upload_demand_file():
                  "train_result": train_result})
         elif file.filename.endswith(('.xlsx', '.xls')):
             # Save Excel file
-            excel_filename = os.path.join('uploads', 'loaded_data2.xlsx')
+            excel_filename = os.path.join('uploads', 'loaded_data_demand.xlsx')
             file.save(excel_filename)
 
             # Read Excel file and save as CSV
             read_file = pd.read_excel(excel_filename)
-            csv_filepath = os.path.join('models', 'product_csv', unique_filename)
+            csv_filepath = os.path.join('uploads', unique_filename)
             read_file.to_csv(csv_filepath, index=False, header=True)  # Ensure to include header if needed
+
+            df = pd.read_csv(csv_filepath)
+            print(df)
+            print(csv_filepath)
+            # Group by product ID and save to separate CSV files
+            process_data_result = process_data(df)
+
             # Call the train_demand_model_endpoint to train the ARIMA model
-            train_result = train_demand_model_endpoint(csv_filepath)
+            train_result = train_demand_model_endpoint()
+            predict_result = predict_demand_endpoint()
 
             return jsonify(
                 {"success": "Excel file uploaded successfully", "filename": unique_filename,
@@ -87,7 +96,7 @@ def train_demand_model_endpoint():
 
                 # Retrieve the DataFrame from the CSV file
                 df = pd.read_csv(file_path, parse_dates=[0], date_parser=date_parser)
-                print(df)
+
                 # Check if required columns are present in the DataFrame
                 required_columns = {'Month', 'ProductID', 'UnitsSold'}
                 if not required_columns.issubset(df.columns):
@@ -105,7 +114,7 @@ def train_demand_model_endpoint():
                                                       seasonal_order=seasonal_order)
 
                     # Save the trained model to a pickle file for each product ID
-                    model_filename = filename
+                    model_filename = os.path.join(output_folder, f"product_{product_id}_data.pkl")
                     with open(model_filename, 'wb') as model_file:
                         pickle.dump(trained_model, model_file)
 
@@ -114,7 +123,6 @@ def train_demand_model_endpoint():
     except Exception as e:
         # Handle any exceptions, e.g., invalid DataFrame format or missing columns
         return {"error": str(e)}
-
 
 @app.route('/predict_demand', methods=['GET'])
 def predict_demand_endpoint():
@@ -126,7 +134,7 @@ def predict_demand_endpoint():
         product_predictions = {}
 
         # Load the actual data for comparison
-        actual_data = pd.read_csv('uploads/SPOILER_tryReStorerevised1.csv')
+        actual_data = pd.read_csv('uploads/loaded_data_demand.csv')
         actual_data['Month'] = pd.to_datetime(actual_data['Month'], errors='coerce')
         actual_data = actual_data.dropna(subset=['Month'])
 

@@ -110,6 +110,9 @@ def save_csv_file(df, file_path):
 
 def process_data(df):
     try:
+        # Rename 'Date' column to 'Month'
+        df.rename(columns={'Date': 'Month'}, inplace=True)
+
         # Convert 'Date' column to datetime format
         df['Month'] = pd.to_datetime(df['Month'], errors='coerce')
         df = df.dropna(subset=['Month'])

@@ -5,7 +5,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 1,
                 "Product": "Snack Pack",
-                "UnitsSold": 79.0544614637152
+                "UnitsSold": 79.4224968320749
             }
         ],
         "future_months": [
@@ -18,7 +18,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 2,
                 "Product": "Bottled Water",
-                "UnitsSold": 148.79931470723307
+                "UnitsSold": 148.56734036701624
             }
         ],
         "future_months": [
@@ -31,7 +31,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 3,
                 "Product": "Phone Charger",
-                "UnitsSold": 39.97257586457144
+                "UnitsSold": 39.79297479613143
             }
         ],
         "future_months": [
@@ -44,7 +44,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 4,
                 "Product": "Gum",
-                "UnitsSold": 52.665189324532236
+                "UnitsSold": 52.58524493182265
             }
         ],
         "future_months": [
@@ -57,7 +57,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 5,
                 "Product": "Energy Drink",
-                "UnitsSold": 8.642362373120335
+                "UnitsSold": 8.548041130662039
             }
         ],
         "future_months": [
@@ -70,7 +70,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 6,
                 "Product": "Tissues",
-                "UnitsSold": 120.01091651886237
+                "UnitsSold": 120.00818517149085
             }
         ],
         "future_months": [
@@ -83,7 +83,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 7,
                 "Product": "Coffee",
-                "UnitsSold": 71.00852846253832
+                "UnitsSold": 70.99607158364267
             }
         ],
         "future_months": [
@@ -96,7 +96,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 8,
                 "Product": "Lighter",
-                "UnitsSold": 79.07066361389903
+                "UnitsSold": 79.07807883034197
             }
         ],
         "future_months": [
@@ -109,7 +109,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 9,
                 "Product": "Hand Sanitizer",
-                "UnitsSold": 90.15917404023574
+                "UnitsSold": 90.1372680307989
             }
         ],
         "future_months": [
@@ -122,7 +122,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 10,
                 "Product": "Sunglasses",
-                "UnitsSold": 82.69732454208281
+                "UnitsSold": 82.58649954467508
             }
         ],
         "future_months": [
@@ -135,7 +135,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 11,
                 "Product": "USB Flash Drive",
-                "UnitsSold": 70.23079670333311
+                "UnitsSold": 70.17691899613695
             }
         ],
         "future_months": [
@@ -148,7 +148,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 12,
                 "Product": "Lip Balm",
-                "UnitsSold": 47.61879522845104
+                "UnitsSold": 47.48491758312041
             }
         ],
         "future_months": [
@@ -161,7 +161,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 13,
                 "Product": "Snack Pack",
-                "UnitsSold": 92.80104941262347
+                "UnitsSold": 92.80816319936058
             }
         ],
         "future_months": [
@@ -174,7 +174,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 14,
                 "Product": "Bottled Water",
-                "UnitsSold": 112.77556392717932
+                "UnitsSold": 112.7280919649564
             }
         ],
         "future_months": [
@@ -187,7 +187,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 15,
                 "Product": "Phone Charger",
-                "UnitsSold": 105.68940801118991
+                "UnitsSold": 105.96334159862832
             }
         ],
         "future_months": [
@@ -200,7 +200,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 16,
                 "Product": "Gum",
-                "UnitsSold": 101.82781735036737
+                "UnitsSold": 101.81757199758063
             }
         ],
         "future_months": [
@@ -213,7 +213,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 17,
                 "Product": "Energy Drink",
-                "UnitsSold": 107.5117118276884
+                "UnitsSold": 107.42014302156424
             }
         ],
         "future_months": [
@@ -226,7 +226,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 18,
                 "Product": "Tissues",
-                "UnitsSold": 92.89021241581372
+                "UnitsSold": 92.86098767039047
             }
         ],
         "future_months": [
@@ -252,7 +252,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 20,
                 "Product": "Lighter",
-                "UnitsSold": 69.2707356407455
+                "UnitsSold": 69.27626697578121
             }
         ],
         "future_months": [
@@ -265,7 +265,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 21,
                 "Product": "Hand Sanitizer",
-                "UnitsSold": 54.50910719781029
+                "UnitsSold": 55.278905283207536
             }
         ],
         "future_months": [
@@ -278,7 +278,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 22,
                 "Product": "Sunglasses",
-                "UnitsSold": 64.74406913547865
+                "UnitsSold": 64.37045341216181
             }
         ],
         "future_months": [
@@ -291,7 +291,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 23,
                 "Product": "USB Flash Drive",
-                "UnitsSold": 112.2834923715004
+                "UnitsSold": 112.34043016088268
             }
         ],
         "future_months": [
@@ -304,7 +304,7 @@
                 "Month": "2025-01-31 00:00:00",
                 "ProductID": 24,
                 "Product": "Lip Balm",
-                "UnitsSold": 47.65915883789891
+                "UnitsSold": 47.66112908753129
             }
         ],
         "future_months": [
