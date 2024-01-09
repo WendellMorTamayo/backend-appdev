@@ -43,6 +43,8 @@ def upload_file():
                 # Save the modified DataFrame to a new CSV file
                 file_path = os.path.join('uploads', 'loaded_data.csv')
                 save_csv_file(df, file_path)
+                train_model_endpoint()
+                calculate_gross_sales()
                 return jsonify({"success": "File uploaded and saved successfully"})
             else:
                 return jsonify({"error": "Invalid date format. Please use either %Y-%m or %y-%m"})
