@@ -1,0 +1,314 @@
+{
+    "1": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 1,
+                "Product": "Snack Pack",
+                "UnitsSold": 79.0544614637152
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "2": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 2,
+                "Product": "Bottled Water",
+                "UnitsSold": 148.79931470723307
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "3": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 3,
+                "Product": "Phone Charger",
+                "UnitsSold": 39.97257586457144
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "4": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 4,
+                "Product": "Gum",
+                "UnitsSold": 52.665189324532236
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "5": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 5,
+                "Product": "Energy Drink",
+                "UnitsSold": 8.642362373120335
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "6": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 6,
+                "Product": "Tissues",
+                "UnitsSold": 120.01091651886237
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "7": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 7,
+                "Product": "Coffee",
+                "UnitsSold": 71.00852846253832
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "8": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 8,
+                "Product": "Lighter",
+                "UnitsSold": 79.07066361389903
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "9": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 9,
+                "Product": "Hand Sanitizer",
+                "UnitsSold": 90.15917404023574
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "10": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 10,
+                "Product": "Sunglasses",
+                "UnitsSold": 82.69732454208281
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "11": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 11,
+                "Product": "USB Flash Drive",
+                "UnitsSold": 70.23079670333311
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "12": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 12,
+                "Product": "Lip Balm",
+                "UnitsSold": 47.61879522845104
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "13": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 13,
+                "Product": "Snack Pack",
+                "UnitsSold": 92.80104941262347
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "14": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 14,
+                "Product": "Bottled Water",
+                "UnitsSold": 112.77556392717932
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "15": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 15,
+                "Product": "Phone Charger",
+                "UnitsSold": 105.68940801118991
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "16": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 16,
+                "Product": "Gum",
+                "UnitsSold": 101.82781735036737
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "17": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 17,
+                "Product": "Energy Drink",
+                "UnitsSold": 107.5117118276884
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "18": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 18,
+                "Product": "Tissues",
+                "UnitsSold": 92.89021241581372
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "19": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 19,
+                "Product": "Coffee",
+                "UnitsSold": 13.438533386642078
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "20": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 20,
+                "Product": "Lighter",
+                "UnitsSold": 69.2707356407455
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "21": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 21,
+                "Product": "Hand Sanitizer",
+                "UnitsSold": 54.50910719781029
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "22": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 22,
+                "Product": "Sunglasses",
+                "UnitsSold": 64.74406913547865
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "23": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 23,
+                "Product": "USB Flash Drive",
+                "UnitsSold": 112.2834923715004
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    },
+    "24": {
+        "predictions": [
+            {
+                "Month": "2025-01-31 00:00:00",
+                "ProductID": 24,
+                "Product": "Lip Balm",
+                "UnitsSold": 47.65915883789891
+            }
+        ],
+        "future_months": [
+            "2025-01"
+        ]
+    }
+}
