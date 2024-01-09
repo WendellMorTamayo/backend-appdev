@@ -1,13 +1,202 @@
 # app.py
+import uuid
+import re
 from flask import Flask, request, render_template, jsonify
 from utils.helper import train_arima_model, save_csv_file, get_last_item_from_json, get_sales_performance_history, \
-    trained_models, parse_date_xy, detect_date_format
+    trained_models, parse_date_xy, detect_date_format, date_parser, process_data
 import os
 import pickle
 import json
 import pandas as pd
 
 app = Flask(__name__)
+
+
+@app.route('/upload_demands')
+def upload_demands():
+    return render_template('upload_demand_form.html')
+
+
+@app.route('/upload_demand', methods=['POST'])
+def upload_demand_file():
+    try:
+        if 'file' not in request.files:
+            return jsonify({"error": "No file part"})
+
+        file = request.files['file']
+
+        if file.filename == '':
+            return jsonify({"error": "No selected file"})
+
+        # Generate a unique filename
+        unique_filename = str(uuid.uuid4()) + '.csv'
+        file_path = os.path.join('uploads', unique_filename)
+
+        # Check if the file is a CSV or Excel file
+        if file and file.filename.endswith('.csv'):
+            # Save the file to a specific folder on the server
+            file_path = os.path.join('uploads', unique_filename)
+            file.save(file_path)
+
+            # Read the file into a DataFrame
+            df = pd.read_csv(file_path)
+
+            # Group by product ID and save to separate CSV files
+            process_data_result = process_data(df)
+
+            # Call the train_demand_model_endpoint to train the ARIMA model
+            train_result = train_demand_model_endpoint()
+
+            return jsonify(
+                {"success": "CSV file uploaded successfully",
+                 "filename": unique_filename,
+                 "result": process_data_result,
+                 "train_result": train_result})
+        elif file.filename.endswith(('.xlsx', '.xls')):
+            # Save Excel file
+            excel_filename = os.path.join('uploads', 'loaded_data2.xlsx')
+            file.save(excel_filename)
+
+            # Read Excel file and save as CSV
+            read_file = pd.read_excel(excel_filename)
+            csv_filepath = os.path.join('models', 'product_csv', unique_filename)
+            read_file.to_csv(csv_filepath, index=False, header=True)  # Ensure to include header if needed
+            # Call the train_demand_model_endpoint to train the ARIMA model
+            train_result = train_demand_model_endpoint(csv_filepath)
+
+            return jsonify(
+                {"success": "Excel file uploaded successfully", "filename": unique_filename,
+                 "train_result": train_result})
+        else:
+            return jsonify({"error": "Invalid file format. Please upload a CSV or Excel file."})
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+
+@app.route('/train_demand_model', methods=['GET'])
+def train_demand_model_endpoint():
+    try:
+        # Specify the output folder for saving trained models
+        output_folder = 'models/product_train/'
+
+        # Iterate over each CSV file in the specified folder
+        for filename in os.listdir('models/product_csv'):
+            if filename.endswith('.csv'):
+                # Construct the full file path
+                file_path = os.path.join('models/product_csv', filename)
+
+                # Retrieve the DataFrame from the CSV file
+                df = pd.read_csv(file_path, parse_dates=[0], date_parser=date_parser)
+                print(df)
+                # Check if required columns are present in the DataFrame
+                required_columns = {'Month', 'ProductID', 'UnitsSold'}
+                if not required_columns.issubset(df.columns):
+                    return {
+                        "error": f"DataFrame in {file_path} must contain 'Month', 'ProductID', and 'UnitsSold' columns"}
+
+                # Group by 'ProductID' and train the ARIMA model for each group
+                for product_id, product_group in df.groupby('ProductID'):
+                    # Assuming df contains the time series data
+                    order = (1, 1, 1)  # Set the appropriate order for your ARIMA model
+                    seasonal_order = (1, 1, 1, 12)
+
+                    # Train the ARIMA model on the product-specific data
+                    trained_model = train_arima_model(product_group['UnitsSold'], order=order,
+                                                      seasonal_order=seasonal_order)
+
+                    # Save the trained model to a pickle file for each product ID
+                    model_filename = filename
+                    with open(model_filename, 'wb') as model_file:
+                        pickle.dump(trained_model, model_file)
+
+        return {"message": "ARIMA Models trained successfully for each product ID"}
+
+    except Exception as e:
+        # Handle any exceptions, e.g., invalid DataFrame format or missing columns
+        return {"error": str(e)}
+
+
+@app.route('/predict_demand', methods=['GET'])
+def predict_demand_endpoint():
+    try:
+        # Replace 'models/product_train/' with the actual path to your trained models
+        model_folder = 'models/product_train/'
+
+        # Create a dictionary to store predictions for each product
+        product_predictions = {}
+
+        # Load the actual data for comparison
+        actual_data = pd.read_csv('uploads/SPOILER_tryReStorerevised1.csv')
+        actual_data['Month'] = pd.to_datetime(actual_data['Month'], errors='coerce')
+        actual_data = actual_data.dropna(subset=['Month'])
+
+        # Set the 'Month' column as the index
+        actual_data.set_index('Month', inplace=True)
+
+        # Find the last available month in the dataset
+        last_available_month = actual_data.index[-1]
+
+        # Replace 'models/product_train/' with the actual path to your trained models
+        model_folder = 'models/product_train/'
+        sorted_product_predictions = {}
+        # Iterate over each pickle file in the specified folder
+        for filename in os.listdir(model_folder):
+            if filename.endswith('.pkl'):
+                # Construct the full file path for the pickle file
+                pickle_file_path = os.path.join(model_folder, filename)
+
+                # Load the trained ARIMA model from the pickle file
+                trained_model = pd.read_pickle(pickle_file_path)
+
+                # Extract the product ID from the filename using regex
+                match = re.match(r'product_(\d+)_data.pkl', filename)
+                if match:
+                    product_id = int(match.group(1))  # Convert ProductID to integer
+                else:
+                    # Handle the case where the filename doesn't match the expected pattern
+                    product_id = 'Unknown'
+
+                product_name = actual_data[actual_data['ProductID'] == product_id]['Product'].iloc[0]
+
+                # Forecast the next month based on the last available month
+                forecast_steps = 1  # Adjust this value to forecast more steps into the future
+                future_index = pd.date_range(start=last_available_month + pd.DateOffset(months=1),
+                                             periods=forecast_steps, freq='M')
+
+                # Use the trained ARIMA model to predict the next month's demand
+                predictions = trained_model.get_forecast(steps=forecast_steps).predicted_mean
+
+                # Convert predictions to a DataFrame
+                forecast_df = pd.DataFrame({
+                    'Month': future_index,
+                    'ProductID': product_id,
+                    'Product': product_name,
+                    'UnitsSold': predictions.tolist(),
+                })
+
+                # Sort the DataFrame by 'ProductID' and 'Month'
+                forecast_df['ProductID'] = forecast_df['ProductID'].astype(int)
+
+                # Convert Timestamp to string for JSON serialization
+                future_index_str = forecast_df['Month'].dt.strftime('%Y-%m').tolist()
+
+                # Store forecast_df in the dictionary for each product
+                product_predictions[product_id] = {
+                    "predictions": forecast_df.to_dict(orient='records'),
+                    "future_months": future_index_str
+                }
+                sorted_product_predictions = dict(sorted(product_predictions.items(), key=lambda x: int(x[0])))
+
+        # Return the product-wise forecasted demand in JSON format
+        output_file_path = 'models/product_predict/sorted_product_predictions.json'  # Add .json to the file path
+        with open(output_file_path, 'w') as json_file:
+            json.dump(sorted_product_predictions, json_file, indent=4, default=str)
+
+        return json.dumps(sorted_product_predictions, indent=4, default=str)
+
+    except Exception as e:
+        # Handle any exceptions, e.g., invalid DataFrame format or missing columns
+        return {"error": str(e)}
 
 
 @app.route('/upload', methods=['POST'])

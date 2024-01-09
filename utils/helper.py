@@ -1,12 +1,10 @@
 # helpers.py
-from datetime import timedelta, datetime
 import os
-import pickle
+from datetime import datetime
 import json
 import pandas as pd
 import statsmodels.api as sm
 from flask import jsonify
-import uuid
 
 trained_models = {}
 
@@ -109,3 +107,32 @@ def save_csv_file(df, file_path):
     # Save the DataFrame to a new CSV file
     df.to_csv(file_path, index=False)
 
+
+def process_data(df):
+    try:
+        # Convert 'Date' column to datetime format
+        df['Month'] = pd.to_datetime(df['Month'], errors='coerce')
+        df = df.dropna(subset=['Month'])
+
+        # Extract month and year from the 'Date' column
+        df['Month'] = df['Month'].dt.to_period('M')
+
+        # Sort DataFrame by 'Date' within each 'ProductID'
+        df = df.sort_values(['ProductID', 'Month'])
+
+        # Save the sorted DataFrame to a single CSV file for each ProductID
+        for product_id, product_group in df.groupby('ProductID'):
+            filename = f"product_{product_id}_data.csv"
+            filepath = os.path.join("models", "product_csv", filename)
+
+            # Save the group to CSV, overwriting the file if it already exists
+            product_group[['Month', 'ProductID', 'Product', 'UnitsSold']].to_csv(filepath, index=False, mode='w', header=True)
+
+        return "Grouping and saving completed successfully"
+
+    except Exception as e:
+        return {"error": str(e)}
+
+
+def date_parser(x):
+    return datetime.strptime(x, '%Y-%m')
