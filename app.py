@@ -1,14 +1,11 @@
 # app.py
 from flask import Flask, request, render_template, jsonify
 from utils.helper import train_arima_model, save_csv_file, get_last_item_from_json, get_sales_performance_history, \
-    trained_models
+    trained_models, parse_date_xy, detect_date_format
 import os
 import pickle
-from sklearn.metrics import mean_absolute_error
 import json
-from flask import Flask, request, jsonify
 import pandas as pd
-from flask import jsonify
 
 app = Flask(__name__)
 
@@ -24,19 +21,35 @@ def upload_file():
         if file.filename == '':
             return jsonify({"error": "No selected file"})
 
-        if file and file.filename.endswith('.csv'):
-            file.save(os.path.join('uploads', 'loaded_data1.csv'))
-            return jsonify({"success": "File uploaded successfully"})
-        elif file.filename.endswith(('.xlsx', '.xls')):
-            excel_filename = os.path.join('uploads', 'loaded_data1.xlsx')
-            file.save(excel_filename)
-            read_file = pd.read_excel(excel_filename)
-            csv_filename = save_csv_file(file)
-            csv_filepath = os.path.join('uploads', csv_filename)
-            read_file.to_csv(csv_filepath, index=False)
-            return jsonify({"success": "Excel file uploaded successfully", "filename": csv_filename})
+        if file and file.filename.endswith(('.csv', '.xlsx', '.xls')):
+            df = pd.read_csv(file) if file.filename.endswith('.csv') else pd.read_excel(file)
+
+            # Detect date format and apply the appropriate parsing function
+            detected_format = detect_date_format(df['Month'])
+            print("Detected Format:", detected_format)
+            df['Month'] = pd.to_datetime(df['Month'], errors='coerce')
+            df = df.dropna(subset=['Month'])
+            original_column_name = df.columns[1]
+            df = df.rename(columns={original_column_name: 'Sales'})
+            if detected_format == "%Y-%m":
+                file_path = os.path.join('uploads', 'loaded_data.csv')
+                save_csv_file(df, file_path)
+                train_model_endpoint()
+                calculate_gross_sales()
+                return jsonify({"success": "File uploaded and saved successfully"})
+            elif detected_format == "%y-%m":
+                # Ensure that the parse_date_xy function is defined and handles parsing correctly
+                df['Month'] = df['Month'].apply(parse_date_xy)
+                # Save the modified DataFrame to a new CSV file
+                file_path = os.path.join('uploads', 'loaded_data.csv')
+                save_csv_file(df, file_path)
+                return jsonify({"success": "File uploaded and saved successfully"})
+            else:
+                return jsonify({"error": "Invalid date format. Please use either %Y-%m or %y-%m"})
+
         else:
-            return jsonify({"error": "Invalid file format. Please upload a CSV file."})
+            return jsonify({"error": "Invalid file format. Please upload a CSV, XLS, or XLSX file."})
+
     except Exception as e:
         return jsonify({"error": str(e)})
 
@@ -126,9 +139,10 @@ def predict_endpoint():
 
         actual_data.set_index('Month', inplace=True)
         last_available_month = actual_data.index[-1]
+        print(last_available_month)
         forecast_steps = 1
-        future_index = pd.date_range(start=last_available_month + pd.DateOffset(months=1), periods=forecast_steps,
-                                     freq='M')
+        future_index = pd.date_range(start=last_available_month, periods=forecast_steps + 1, freq='M')[1:]
+
         predictions = round(trained_model.forecast(steps=forecast_steps, index=future_index), 2)
         predictions_list = predictions.tolist()
         last_month_value = actual_data.iloc[-1]['Sales']
@@ -150,8 +164,9 @@ def get_sales_data():
         actual_data = pd.read_csv('uploads/loaded_data.csv')
         actual_data['Month'] = pd.to_datetime(actual_data['Month'], errors='coerce')
         actual_data = actual_data.dropna(subset=['Month'])
-        original_column_name = actual_data.columns[1]
-        actual_data = actual_data.rename(columns={original_column_name: 'Sales'})
+        if actual_data.columns[1] != 'Sales':
+            original_column_name = actual_data.columns[1]
+            actual_data = actual_data.rename(columns={original_column_name: 'Sales'})
 
         # Group by 'Month' and calculate the sum for each month
         monthly_sales_data = actual_data.groupby(actual_data['Month'].dt.strftime('%Y-%m'))['Sales'].sum().reset_index()
@@ -166,6 +181,52 @@ def get_sales_data():
     except Exception as e:
         return jsonify({"error": str(e)})
 
+
+@app.route('/line_graph_data', methods=['GET'])
+def line_graph_data():
+    try:
+        # Fetch actual sales data
+        actual_data = pd.read_json('output.json')
+        actual_data['Month'] = pd.to_datetime(actual_data['Month'], errors='coerce')
+        actual_data = actual_data.dropna(subset=['Month'])
+        original_column_name = actual_data.columns[1]
+        actual_data = actual_data.rename(columns={original_column_name: 'Sales'})
+
+        # Get the last 3 items from sales data
+        last_3_items = actual_data.tail(3)
+
+        # Fetch prediction data
+        with open('trained_model.pkl', 'rb') as model_file:
+            trained_model = pickle.load(model_file)
+
+        last_available_month = last_3_items['Month'].iloc[-1]
+        print(last_available_month)
+        forecast_steps = 1  # Assuming you want predictions for the next 3 months
+        future_index = pd.date_range(start=last_available_month, periods=forecast_steps + 1, freq='M')[1:]
+        predictions = trained_model.forecast(steps=forecast_steps, index=future_index)
+
+        # Format the data for the LineGraph
+        line_graph_data = [
+            {"Month": item['Month'].strftime('%Y-%m'), "Sales": item['Sales']} for _, item in last_3_items.iterrows()
+        ]
+
+        line_graph_data.extend(
+            [{"Month": month.strftime('%Y-%m'), "Sales": round(prediction, 2)} for month, prediction in
+             zip(future_index, predictions)]
+        )
+
+        # Calculate the maximum value
+        max_value = max(item['Sales'] for item in line_graph_data)
+        max_value = float(max_value)  # Convert to int if needed
+
+        # Create a dictionary to be passed to jsonify
+        response_data = {"line_graph_data": line_graph_data, "max_value": max_value}
+
+        # Return the LineGraph data and max value as JSON
+        return jsonify(response_data)
+
+    except Exception as e:
+        return jsonify({"error": str(e)})
 
 
 @app.route('/sales_performance_history', methods=['GET'])

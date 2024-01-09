@@ -1,5 +1,5 @@
 # helpers.py
-from datetime import timedelta
+from datetime import timedelta, datetime
 import os
 import pickle
 import json
@@ -16,18 +16,15 @@ def train_arima_model(data, order=(1, 1, 1), seasonal_order=(1, 1, 1, 12)):
     return model
 
 
-def save_csv_file(file):
-    unique_filename = str(uuid.uuid4()) + '.csv'
-    file_path = os.path.join('uploads', unique_filename)
-    file.save(file_path)
-    return unique_filename
-
-
 def get_last_item_from_json(file_path="output.json"):
     try:
         with open(file_path, "r") as json_file:
             data_list = json.load(json_file)
         last_item = data_list[-1]
+
+        if 'cumulative_gross_sales' in last_item:
+            last_item['cumulative_gross_sales'] = round(last_item['cumulative_gross_sales'], 2)
+
         return last_item
     except Exception as e:
         print(f"Error: {e}")
@@ -76,3 +73,39 @@ def get_sales_performance_history():
 
     except Exception as e:
         return jsonify({"error": str(e)})
+
+
+def parse_date_xy(input_date):
+    # Split the input date into parts
+    parts = input_date.split('-')
+
+    # Check the length of the first part (year)
+    if len(parts[0]) == 1:
+        # Add a leading zero to the year if it's a single digit
+        input_datetime = datetime.strptime(f"0{input_date}", "%y-%m")
+    else:
+        input_datetime = datetime.strptime(f"{input_date}", "%y-%m")
+
+    # Format the datetime object to the desired output format "YYYY-Mon"
+    output_date = input_datetime.strftime("%Y-%m")
+
+    return output_date
+
+
+def detect_date_format(date_column):
+    parsed_dates_Ym = pd.to_datetime(date_column, format='%Y-%m', errors='coerce')
+    parsed_dates_ym = pd.to_datetime(date_column, format='%y-%m', errors='coerce')
+
+    count_Ym = pd.notna(parsed_dates_Ym).sum()
+    count_ym = pd.notna(parsed_dates_ym).sum()
+
+    if count_Ym > count_ym:
+        return "%Y-%m"
+    else:
+        return "%y-%m"
+
+
+def save_csv_file(df, file_path):
+    # Save the DataFrame to a new CSV file
+    df.to_csv(file_path, index=False)
+
