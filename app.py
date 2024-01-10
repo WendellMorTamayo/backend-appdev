@@ -200,7 +200,7 @@ def predict_demand_endpoint():
         with open(output_file_path, 'w') as json_file:
             json.dump(sorted_product_predictions, json_file, indent=4, default=str)
 
-        return json.dumps(sorted_product_predictions, indent=4, default=str)
+        return jsonify(sorted_product_predictions)
 
     except Exception as e:
         # Handle any exceptions, e.g., invalid DataFrame format or missing columns
@@ -431,6 +431,19 @@ def line_graph_data():
 @app.route('/sales_performance_history', methods=['GET'])
 def sales_performance_history():
     return get_sales_performance_history()
+
+
+@app.route('/get_json_data', methods=['GET'])
+def get_json_data():
+    try:
+        # Open the JSON file and load data
+        with open('output.json', 'r') as json_file:
+            data = json.load(json_file)
+
+        # Return the JSON data
+        return jsonify(data[-1])
+    except Exception as e:
+        return jsonify({"error": str(e)})
 
 
 if __name__ == '__main__':
