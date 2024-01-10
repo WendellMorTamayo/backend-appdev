@@ -124,6 +124,7 @@ def train_demand_model_endpoint():
         # Handle any exceptions, e.g., invalid DataFrame format or missing columns
         return {"error": str(e)}
 
+
 @app.route('/predict_demand', methods=['GET'])
 def predict_demand_endpoint():
     try:
@@ -147,6 +148,7 @@ def predict_demand_endpoint():
         # Replace 'models/product_train/' with the actual path to your trained models
         model_folder = 'models/product_train/'
         sorted_product_predictions = {}
+
         # Iterate over each pickle file in the specified folder
         for filename in os.listdir(model_folder):
             if filename.endswith('.pkl'):
@@ -174,12 +176,15 @@ def predict_demand_endpoint():
                 # Use the trained ARIMA model to predict the next month's demand
                 predictions = trained_model.get_forecast(steps=forecast_steps).predicted_mean
 
-                # Convert predictions to a DataFrame
+                # Round off the predictions to the desired number of decimal places
+                rounded_predictions = predictions.round(decimals=0)  # Adjust the decimals parameter as needed
+
+                # Convert rounded_predictions to a DataFrame
                 forecast_df = pd.DataFrame({
                     'Month': future_index,
                     'ProductID': product_id,
                     'Product': product_name,
-                    'UnitsSold': predictions.tolist(),
+                    'UnitsSold': rounded_predictions.tolist(),
                 })
 
                 # Sort the DataFrame by 'ProductID' and 'Month'
@@ -440,11 +445,25 @@ def get_json_data():
         with open('output.json', 'r') as json_file:
             data = json.load(json_file)
 
-        # Return the JSON data
-        return jsonify(data[-1])
+        # Check if the data is not empty and is a list
+        if data and isinstance(data, list):
+            # Return only the last element of the array, but as an array
+            return jsonify([data[-1]])
+        else:
+            # Return an empty array if data is not a list or is empty
+            return jsonify([])
+
     except Exception as e:
         return jsonify({"error": str(e)})
 
+@app.route('/get_sorted_product_predictions', methods=['GET'])
+def get_sorted_product_predictions():
+    try:
+        with open('models/product_predict/sorted_product_predictions.json', 'r') as json_file:
+            data = json.load(json_file)
+        return jsonify([data])
+    except Exception as e:
+        return jsonify({"error": str(e)})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
